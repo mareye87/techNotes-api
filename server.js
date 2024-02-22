@@ -6,9 +6,10 @@ const { logger, logEvents } = require("./middleware/logger");
 const errorHandler = require("./middleware/errorHandler");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-// const corsOptions = require("./config/corsOptions");
+const corsOptions = require("./config/corsOptions");
 const connectDB = require("./config/dbConn");
 const mongoose = require("mongoose");
+const allowedOrigins = require("./config/allowedOrigins");
 const PORT = process.env.PORT || 3500;
 
 console.log(process.env.NODE_ENV);
@@ -17,7 +18,7 @@ connectDB();
 
 app.use(logger);
 
-app.use(cors());
+app.use(cors(allowedOrigins));
 
 app.use(express.json());
 
