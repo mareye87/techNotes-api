@@ -17,26 +17,7 @@ connectDB();
 
 app.use(logger);
 
-// app.use(cors(corsOptions));
-
-app.use(function (req, res, next) {
-  // res.header("Access-Control-Allow-Origin", "*");
-  const allowedOrigins = [
-    "https://technotes-ejqo.onrender.com",
-    "http://technotes-ejqo.onrender.com",
-  ];
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  res.header("Access-Control-Allow-credentials", true);
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE");
-  next();
-});
+app.use(cors());
 
 app.use(express.json());
 
